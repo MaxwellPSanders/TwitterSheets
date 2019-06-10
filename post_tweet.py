@@ -4,22 +4,27 @@ from oauth2client.service_account import ServiceAccountCredentials
 import schedule
 import tweepy
 
+#Twitter keys
 CONSUMER_KEY = 'XXXX'
 CONSUMER_SECRET = 'XXXX'
 ACCESS_KEY = 'XXXX-XXXX'
 ACCESS_SECRET = 'XXXX'
+
+#Google keys
+JSON_KEYFILE = 'XXXX'
+SHEET_NAME = 'XXXX'
 
 #the defined function, we will call this on a scheduler
 def post_tweet() :
     # use creds to create a client to interact with the Google Drive API
     scope = ['https://spreadsheets.google.com/feeds',
 	 'https://www.googleapis.com/auth/drive']
-    creds = ServiceAccountCredentials.from_json_keyfile_name('client_secret.json', scope)
+    creds = ServiceAccountCredentials.from_json_keyfile_name(JSON_KEYFILE, scope)
     client = gspread.authorize(creds)
 
     # Find a workbook by name and open the first sheet
     # Make sure you use the right name here.
-    sheet = client.open("BigTest").sheet1
+    sheet = client.open(SHEET_NAME).sheet1
 
     #update the cells
     cell_list = sheet.findall("Confirm")[1:]   
