@@ -1,3 +1,4 @@
+import schedule
 import tweepy
 
 CONSUMER_KEY = 'XXXX'
@@ -14,3 +15,9 @@ def post_tweet( tweet_you, tweet_me ) :
     if len( tweet ) < 280 :
         api = tweepy.API( auth )
         api.update_status( tweet )
+
+def main() :
+    schedule.every().day.at( "17:00" ).do( post_tweet( you, me ) )
+
+if __name__ == "__main__" :
+    main()
