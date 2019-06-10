@@ -45,15 +45,20 @@ def post_tweet() :
         auth.set_access_token( ACCESS_KEY, ACCESS_SECRET )
 
         #Create the tweet string and check if it is too long
-        tweet = "You: " + tweet_you + "\nMe, woke: " + tweet_me
+        tweet = "You: " + tweet_you.value + "\nMe, woke: " + tweet_me.value
         if len( tweet ) < 280 :
 
             #tweet it out
             api = tweepy.API( auth )
             api.update_status( tweet )
 
+            #we posted
+            print("We Posted!")
+
         #clear out the cell
         sheet.update_cell(cell.row, 4, '')
+
+		
 
 #the main function
 def main() :
