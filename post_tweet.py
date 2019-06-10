@@ -59,7 +59,7 @@ def main() :
     #sets the scheduler
     schedule.every().day.at( "17:00" ).do( post_tweet )
     #running the scheduler
-    While True:
+    while True:
         schedule.run_pending()
         time.sleep(1)
 
